@@ -190,7 +190,7 @@ public class Vector
      */
     public static Vector gravityVector(int delta)
     {
-        return new Vector(0.00098f / ((float) delta / 1000f), 270);
+        return new Vector(.0981f / ((float) delta / 1000f), 270);//Vector(0.00098f / ((float) delta / 1000f), 270);
     }
 
     /**

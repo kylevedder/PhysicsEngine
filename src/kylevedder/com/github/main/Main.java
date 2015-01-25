@@ -66,17 +66,18 @@ public class Main extends BasicGame
     public void init(GameContainer container) throws SlickException
     {
         register = new ObjectRegister();
-        box = new PhysicsBox(40, SCREEN_HEIGHT - 40, 40, 40, 0, 3, 90, 5);
+        box = new PhysicsBox(40, SCREEN_HEIGHT - 40, 40, 40, 0, 3, 90, 77);
         floor = new RigidBox(40, 40, 40, 40, 0);        
         register.add(box);
         register.add(floor);        
     }
-
+    
     @Override
     public void update(GameContainer container, int delta) throws SlickException
     {
+        System.out.println(delta);        
         box.update(delta);
-        floor.update(delta);        
+        floor.update(delta);                
     }
 
     @Override

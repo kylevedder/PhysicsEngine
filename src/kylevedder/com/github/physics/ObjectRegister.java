@@ -100,9 +100,9 @@ public class ObjectRegister
         float tenHitY = tentativeHitBox.getCenterY();
         float tenAngle = tentativeHitBox.getAngle();
 
-        float vectX = finalVector.getXComp();
-        float vectY = finalVector.getYComp();
-        float vectRotation = finalVector.getRotation();
+        float vectX = finalVector.getXComp()/(1000/delta);//dist/sec
+        float vectY = finalVector.getYComp()/(1000/delta);//dist/sec
+        float vectRotation = finalVector.getRotation()/(1000/delta);//deg/sec
 
         float vectXSubs = vectX / subdivisions;
         float vectYSubs = vectY / subdivisions;
