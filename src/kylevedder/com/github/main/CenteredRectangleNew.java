@@ -24,6 +24,14 @@ public class CenteredRectangleNew
     private float centerX;
     private float centerY;
 
+    public CenteredRectangleNew(CenteredRectangleNew cr)
+    {
+        this.centerX = cr.centerX;
+        this.centerY = cr.centerY;
+        this.angle = cr.getAngle();                        
+        p = cr.p;
+    }
+    
     public CenteredRectangleNew(float centerX, float centerY, float width, float height, float rotation)
     {
         this.centerX = centerX;
@@ -120,6 +128,16 @@ public class CenteredRectangleNew
     }
 
     /**
+     * Gets the angle of the box in degrees.
+     * @return 
+     */
+    public float getAngle()
+    {
+        return angle;
+    }
+
+    
+    /**
      * Gets the points of the CenteredRectangle
      *
      * @return
@@ -152,5 +170,35 @@ public class CenteredRectangleNew
         {
             return null;
         }
+    }
+    
+    /**
+     * Gets the polygon of the rectangle.
+     *
+     * @return
+     */
+    public Polygon getPolygon()
+    {
+        return p;
+    }
+    
+    /**
+     * Checks to see if this CenteredRectangle collides with the passed CenteredRectangle.
+     * @param c
+     * @return 
+     */
+    public boolean collides(CenteredRectangleNew c)
+    {
+        return p.intersects(c.getPolygon());
+    }
+    
+    /**
+     * Checks to see if this CenteredRectangle collides with the passed polygon.
+     * @param c
+     * @return 
+     */
+    public boolean collides(Polygon p)
+    {
+        return p.intersects(p);
     }
 }

@@ -6,6 +6,8 @@
 package kylevedder.com.github.physics;
 
 import kylevedder.com.github.main.CenteredRectangleNew;
+import kylevedder.com.github.main.Main;
+
 import org.newdawn.slick.Graphics;
 
 /**
@@ -22,22 +24,30 @@ public class PhysicsBox extends PhysicsObject
 
     public PhysicsBox(float x, float y, float width, float height, float rotation, float speed, float angle)
     {
-        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);        
+        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);
         this.vector = new Vector(speed, angle);
     }
-    
+
     public void update(int delta)
     {
-        //if no collision with other boxes
-        this.hitBox.updateDelta(this.vector.getXComp(), this.vector.getYComp(), 0);
-        this.vector = Vector.add(Vector.gravityVector(delta), this.vector);        
-        System.out.println(vector);
+        CenteredRectangleNew tentativeHitBox = new CenteredRectangleNew(this.hitBox);
+        System.out.println(Main.register.checkCollision(tentativeHitBox));
+        if (!Main.register.checkCollision(tentativeHitBox))
+        {
+            //if no collision with other boxes
+            this.hitBox.updateDelta(this.vector.getXComp(), this.vector.getYComp(), 0);
+            this.vector = Vector.add(Vector.gravityVector(delta), this.vector);
+//        System.out.println(vector);
+        }
+        else
+        {
+            
+        }
     }
-    
+
     public void render(Graphics g)
     {
         this.hitBox.render(g);
     }
-    
-    
+
 }

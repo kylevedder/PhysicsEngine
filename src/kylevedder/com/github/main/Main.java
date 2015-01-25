@@ -5,7 +5,9 @@
  */
 package kylevedder.com.github.main;
 
+import kylevedder.com.github.physics.ObjectRegister;
 import kylevedder.com.github.physics.PhysicsBox;
+import kylevedder.com.github.physics.RigidBox;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -23,13 +25,14 @@ public class Main extends BasicGame
     public static final int SCREEN_WIDTH = 800;
     public static final int SCREEN_HEIGHT = 600;
     public static AppGameContainer app;
+    public static ObjectRegister register = null;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SlickException
     {
-        app = initApp("Physics");
+        app = initApp("Physics");        
     }
 
     /**
@@ -53,32 +56,39 @@ public class Main extends BasicGame
         super(title);
     }
 
-    
     PhysicsBox box = null;
+    RigidBox floor = null;
+
     @Override
     public void init(GameContainer container) throws SlickException
-    {       
-        box = new PhysicsBox(40, SCREEN_HEIGHT - 40, 40, 40, 0, 0, 0);
+    {
+        register = new ObjectRegister();
+        box = new PhysicsBox(40, SCREEN_HEIGHT - 40, 40, 40, 0, 3, 90);
+        floor = new RigidBox(40, 40, 40, 40, 0);        
+        register.add(box);
+        register.add(floor);        
     }
-    
+
     @Override
     public void update(GameContainer container, int delta) throws SlickException
     {
         box.update(delta);
+        floor.update(delta);        
     }
 
     @Override
     public void render(GameContainer container, Graphics g) throws SlickException
     {
         //clears
-        g.clear();        
+        g.clear();
 //        g.rotate(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 180);
 //        g.scale(-1, 1);        
         //backgrond
         g.setBackground(new Color(103, 194, 240));
-        g.setColor(Color.black);                
-        box.render(g);        
-        
+        g.setColor(Color.black);
+        box.render(g);
+        floor.render(g);
+
     }
 
 }
