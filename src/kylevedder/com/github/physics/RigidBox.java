@@ -5,7 +5,7 @@
  */
 package kylevedder.com.github.physics;
 
-import kylevedder.com.github.main.CenteredRectangleNew;
+import kylevedder.com.github.main.CenteredRectangle;
 import org.newdawn.slick.Graphics;
 
 /**
@@ -22,7 +22,7 @@ public class RigidBox extends PhysicsObject
 
     public RigidBox(float x, float y, float width, float height, float rotation)
     {
-        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);        
+        this.hitBox = new CenteredRectangle(x, y, width, height, rotation);        
         this.vector = new Vector(0, 0);
     }
     

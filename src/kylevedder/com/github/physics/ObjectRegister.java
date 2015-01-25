@@ -6,7 +6,7 @@
 package kylevedder.com.github.physics;
 
 import java.util.ArrayList;
-import kylevedder.com.github.main.CenteredRectangleNew;
+import kylevedder.com.github.main.CenteredRectangle;
 
 /**
  *
@@ -64,7 +64,7 @@ public class ObjectRegister
      * @param pointer - pointer to the original hitbox.
      * @return if rect collides with others.
      */
-    public boolean checkCollision(CenteredRectangleNew rect, Object pointer)
+    public boolean checkCollision(CenteredRectangle rect, Object pointer)
     {
         for (PhysicsObject objectItem : objectsList)
         {
@@ -89,12 +89,12 @@ public class ObjectRegister
      * <p>
      * <li>Slot 1 - vector</li></ul>
      */
-    public Object[] updateCollision(CenteredRectangleNew hitBox, Vector vector, int subdivisions, int delta)
+    public Object[] updateCollision(CenteredRectangle hitBox, Vector vector, int subdivisions, int delta)
     {
 
         Vector finalVector = vector;
         //create tenativeHitBox
-        CenteredRectangleNew tentativeHitBox = new CenteredRectangleNew(hitBox);
+        CenteredRectangle tentativeHitBox = new CenteredRectangle(hitBox);
 
         float tenHitX = tentativeHitBox.getCenterX();
         float tenHitY = tentativeHitBox.getCenterY();

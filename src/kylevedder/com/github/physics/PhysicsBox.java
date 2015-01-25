@@ -5,7 +5,7 @@
  */
 package kylevedder.com.github.physics;
 
-import kylevedder.com.github.main.CenteredRectangleNew;
+import kylevedder.com.github.main.CenteredRectangle;
 import kylevedder.com.github.main.Main;
 
 import org.newdawn.slick.Graphics;
@@ -24,20 +24,20 @@ public class PhysicsBox extends PhysicsObject
 
     public PhysicsBox(float x, float y, float width, float height, float rotation, float speed, float angle)
     {
-        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);
+        this.hitBox = new CenteredRectangle(x, y, width, height, rotation);
         this.vector = new Vector(speed, angle);
     }
     
     public PhysicsBox(float x, float y, float width, float height, float rotation, float speed, float angle, float rotationSpeed)
     {
-        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);
+        this.hitBox = new CenteredRectangle(x, y, width, height, rotation);
         this.vector = new Vector(speed, angle, rotationSpeed);
     }
 
     public void update(int delta)
     {
         Object[] objects = Main.register.updateCollision(this.hitBox, vector, Main.NUM_COLLISION_UPDATES, delta);
-        this.hitBox = (CenteredRectangleNew)objects[0];
+        this.hitBox = (CenteredRectangle)objects[0];
         this.vector = (Vector)objects[1];
     }
 

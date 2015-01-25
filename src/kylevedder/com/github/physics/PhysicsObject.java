@@ -5,7 +5,7 @@
  */
 package kylevedder.com.github.physics;
 
-import kylevedder.com.github.main.CenteredRectangleNew;
+import kylevedder.com.github.main.CenteredRectangle;
 import kylevedder.com.github.physics.Vector;
 import org.newdawn.slick.Image;
 
@@ -15,7 +15,7 @@ import org.newdawn.slick.Image;
  */
 public abstract class PhysicsObject
 {    
-    protected CenteredRectangleNew hitBox = null;
+    protected CenteredRectangle hitBox = null;
     protected Vector vector;                  
 
     public PhysicsObject()
