@@ -7,6 +7,7 @@ package kylevedder.com.github.main;
 
 import kylevedder.com.github.physics.ObjectRegister;
 import kylevedder.com.github.physics.PhysicsBox;
+import kylevedder.com.github.physics.PhysicsBoxControlled;
 import kylevedder.com.github.physics.RigidBox;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -60,23 +61,26 @@ public class Main extends BasicGame
     }
 
     PhysicsBox box = null;
+    PhysicsBoxControlled box2 = null;
     RigidBox floor = null;
 
     @Override
     public void init(GameContainer container) throws SlickException
     {
         register = new ObjectRegister();
-        box = new PhysicsBox(40, SCREEN_HEIGHT - 40, 40, 40, 0, 3, 90, 45);
-        floor = new RigidBox(40, 40, 40, 40, 0);        
+        box = new PhysicsBox(0, SCREEN_HEIGHT - 40, 40, 40, 0, 100, 0, 45);
+        box2 = new PhysicsBoxControlled(400, SCREEN_HEIGHT - 40, 40, 20, 0, 0, 0,0);
+        floor = new RigidBox(200, 40, 40, 40, 0);        
         register.add(box);
+        register.add(box2);
         register.add(floor);        
     }
     
     @Override
     public void update(GameContainer container, int delta) throws SlickException
-    {
-        System.out.println(delta);        
+    {        
         box.update(delta);
+        box2.update(container,delta);
         floor.update(delta);                
     }
 
@@ -89,8 +93,11 @@ public class Main extends BasicGame
 //        g.scale(-1, 1);        
         //backgrond
         g.setBackground(new Color(103, 194, 240));
-        g.setColor(Color.black);
+        g.setColor(Color.red);
         box.render(g);
+        g.setColor(Color.darkGray);
+        box2.render(g);
+        g.setColor(Color.black);
         floor.render(g);
 
     }

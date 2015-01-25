@@ -68,7 +68,7 @@ public class ObjectRegister
     {
         for (PhysicsObject objectItem : objectsList)
         {
-            System.out.println(objectItem);
+//            System.out.println(objectItem);
             if (pointer != objectItem.hitBox && rect.collides(objectItem.hitBox))
             {
                 return true;
@@ -127,7 +127,7 @@ public class ObjectRegister
                     hitBox.updateAbs(tenHitX + (vectX - vectXSubs * i), tenHitY + (vectY - vectYSubs * i), tenAngle + (vectRotation - vectRotationSubs*i));
 //                    finalVector = Vector.add(Vector.gravityVector(delta), vector);
 //                    finalVector = Vector.flipAxis(finalVector, false, true);
-                    finalVector = Vector.zeroVector();
+                    finalVector.setSpeed(0);
                     return new Object[]
                     {
                         hitBox, finalVector
@@ -138,7 +138,7 @@ public class ObjectRegister
             hitBox.updateAbs(tenHitX , tenHitY, tenAngle);
 //            finalVector = Vector.add(Vector.gravityVector(delta), vector);
 //            finalVector = Vector.flipAxis(finalVector, false, true);
-            finalVector = Vector.zeroVector();
+            finalVector.setSpeed(0);
             return new Object[]
             {
                 hitBox, finalVector
@@ -148,7 +148,7 @@ public class ObjectRegister
         else
         {
             hitBox.updateDelta(vectX, vectY, vectRotation);
-            finalVector = Vector.add(Vector.gravityVector(delta), vector);
+//            finalVector = Vector.add(Vector.gravityVector(delta), vector);
             return new Object[]
             {
                 hitBox, finalVector
