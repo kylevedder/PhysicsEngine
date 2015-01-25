@@ -30,19 +30,9 @@ public class PhysicsBox extends PhysicsObject
 
     public void update(int delta)
     {
-        CenteredRectangleNew tentativeHitBox = new CenteredRectangleNew(this.hitBox);
-        System.out.println(Main.register.checkCollision(tentativeHitBox));
-        if (!Main.register.checkCollision(tentativeHitBox))
-        {
-            //if no collision with other boxes
-            this.hitBox.updateDelta(this.vector.getXComp(), this.vector.getYComp(), 0);
-            this.vector = Vector.add(Vector.gravityVector(delta), this.vector);
-//        System.out.println(vector);
-        }
-        else
-        {
-            
-        }
+        Object[] objects = Main.register.updateCollision(this.hitBox, vector, Main.NUM_COLLISION_UPDATES, delta);
+        this.hitBox = (CenteredRectangleNew)objects[0];
+        this.vector = (Vector)objects[1];
     }
 
     public void render(Graphics g)

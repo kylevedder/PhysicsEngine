@@ -20,6 +20,14 @@ public abstract class PhysicsObject
 
     public PhysicsObject()
     {
-    }    
+    }
+
+    @Override
+    public String toString()
+    {
+        return vector.toString();
+    }
+    
+    
          
 }

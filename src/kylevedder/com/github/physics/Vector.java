@@ -15,6 +15,7 @@ public class Vector
 {
     private float speed;
     private float angle;
+    private float rotation;
     
     public static float ANGLE_MIN = 0;
     public static float ANGLE_MAX = 360;
@@ -32,6 +33,7 @@ public class Vector
     {
         this.speed = Math.abs(speed);
         this.angle = angle;
+        this.rotation = 0;
     }
     
     public Vector(float xComp, float yComp, int unused)
@@ -39,6 +41,22 @@ public class Vector
         //Pythagorean Therom
         this.speed = (float)Math.sqrt(Math.pow(xComp, 2) + Math.pow(yComp, 2));
         this.angle = Utils.wrapFloat((float)Math.toDegrees(Math.atan2(yComp, xComp)), ANGLE_MIN, ANGLE_MAX);        
+        this.rotation = 0;
+    }
+    
+    public Vector(float speed, float angle, float rotation)
+    {
+        this.speed = Math.abs(speed);
+        this.angle = angle;
+        this.rotation = rotation;
+    }
+    
+    public Vector(float xComp, float yComp, float rotation, int unused)
+    {
+        //Pythagorean Therom
+        this.speed = (float)Math.sqrt(Math.pow(xComp, 2) + Math.pow(yComp, 2));
+        this.angle = Utils.wrapFloat((float)Math.toDegrees(Math.atan2(yComp, xComp)), ANGLE_MIN, ANGLE_MAX);        
+        this.rotation = rotation;
     }
     
     /**
@@ -76,6 +94,17 @@ public class Vector
     {
         return speed;
     }
+
+    /**
+     * Gets the rotation of the object.
+     * @return 
+     */
+    public float getRotation()
+    {
+        return rotation;
+    }
+    
+    
     
     
 
@@ -142,5 +171,14 @@ public class Vector
     public static Vector gravityVector(int delta)
     {
         return new Vector(0.00098f/((float)delta/1000f), 270);
+    }
+    
+    /**
+     * Vector with the magnitude and direction of zero.
+     * @return 
+     */
+    public static Vector zeroVector()
+    {
+        return new Vector(0, 0);
     }
 }

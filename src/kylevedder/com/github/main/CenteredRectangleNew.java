@@ -128,6 +128,26 @@ public class CenteredRectangleNew
     }
 
     /**
+     * Gets the X of the center of the object
+     * @return 
+     */
+    public float getCenterX()
+    {
+        return centerX;
+    }
+
+    /**
+     * Gets the Y of the center of the object
+     * @return 
+     */
+    public float getCenterY()
+    {
+        return centerY;
+    }
+
+    
+    
+    /**
      * Gets the angle of the box in degrees.
      * @return 
      */
