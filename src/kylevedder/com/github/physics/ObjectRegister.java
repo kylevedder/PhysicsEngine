@@ -52,11 +52,12 @@ public class ObjectRegister
         }
         return false;
     }
-    
+
     /**
      * Checks to see if an object collides.
      * <p>
-     * Takes the rectangle to check for coords and an object so that the rect does not check itself
+     * Takes the rectangle to check for coords and an object so that the rect
+     * does not check itself
      * </p>
      *
      * @param objectChecking - rectangle to check against others.
@@ -75,26 +76,26 @@ public class ObjectRegister
         }
         return false;
     }
-        
-    
+
     /**
      * Updates the rectangle position.
      *
      * @param tentativeHitBox
      * @param vector
      * @param delta
-     * 
+     *
      * @return <b>Object array containing:</b>
      * <ul><li>Slot 0 - hitBox</li>
-     * <p><li>Slot 1 - vector</li></ul>
+     * <p>
+     * <li>Slot 1 - vector</li></ul>
      */
     public Object[] updateCollision(CenteredRectangleNew hitBox, Vector vector, int subdivisions, int delta)
     {
-        
+
         Vector finalVector = vector;
         //create tenativeHitBox
         CenteredRectangleNew tentativeHitBox = new CenteredRectangleNew(hitBox);
-        
+
         float tenHitX = tentativeHitBox.getCenterX();
         float tenHitY = tentativeHitBox.getCenterY();
         float tenAngle = tentativeHitBox.getAngle();
@@ -107,7 +108,6 @@ public class ObjectRegister
         float vectYSubs = vectY / subdivisions;
         float vectRotationSubs = vectRotation / subdivisions;
 
-        
         //cursory collision check
         tentativeHitBox.updateAbs(tenHitX + (vectX), tenHitY + (vectY), tenAngle + (vectRotation));
         if (this.checkCollision(tentativeHitBox, hitBox))
@@ -124,19 +124,36 @@ public class ObjectRegister
                 if (!this.checkCollision(tentativeHitBox, hitBox))
                 {
                     //if no collision with other boxes
-                    hitBox.updateAbs(tenHitX + (vectX - vectXSubs * i), tenHitY + (vectY - vectYSubs * i), tenAngle);
-//                    this.vector = Vector.add(Vector.gravityVector(delta), vector);
+                    hitBox.updateAbs(tenHitX + (vectX - vectXSubs * i), tenHitY + (vectY - vectYSubs * i), tenAngle + (vectRotation - vectRotationSubs*i));
+//                    finalVector = Vector.add(Vector.gravityVector(delta), vector);
+//                    finalVector = Vector.flipAxis(finalVector, false, true);
                     finalVector = Vector.zeroVector();
-                    break subdivisionLoop;
+                    return new Object[]
+                    {
+                        hitBox, finalVector
+                    };
                 }
             }
+            //not one of the subdivisions, reverting to last position
+            hitBox.updateAbs(tenHitX , tenHitY, tenAngle);
+//            finalVector = Vector.add(Vector.gravityVector(delta), vector);
+//            finalVector = Vector.flipAxis(finalVector, false, true);
+            finalVector = Vector.zeroVector();
+            return new Object[]
+            {
+                hitBox, finalVector
+            };
         }
         //no collision
         else
         {
             hitBox.updateDelta(vectX, vectY, vectRotation);
             finalVector = Vector.add(Vector.gravityVector(delta), vector);
+            return new Object[]
+            {
+                hitBox, finalVector
+            };
         }
-        return new Object[]{hitBox, finalVector};
+
     }
 }

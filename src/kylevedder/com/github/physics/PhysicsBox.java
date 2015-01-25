@@ -27,6 +27,12 @@ public class PhysicsBox extends PhysicsObject
         this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);
         this.vector = new Vector(speed, angle);
     }
+    
+    public PhysicsBox(float x, float y, float width, float height, float rotation, float speed, float angle, float rotationSpeed)
+    {
+        this.hitBox = new CenteredRectangleNew(x, y, width, height, rotation);
+        this.vector = new Vector(speed, angle, rotationSpeed);
+    }
 
     public void update(int delta)
     {
