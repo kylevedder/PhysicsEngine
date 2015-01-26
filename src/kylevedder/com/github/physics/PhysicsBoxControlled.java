@@ -58,12 +58,12 @@ public class PhysicsBoxControlled extends PhysicsBox
             //drive forward
             if (input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_W))
             {
-                vector.addSpeed(2);
+                vector.addSpeed(5);
             }
             //drive forward
             if (input.isKeyDown(Input.KEY_DOWN) || input.isKeyDown(Input.KEY_S))
             {
-                vector.addSpeed(-2);
+                vector.addSpeed(-5);
             }
             //turn left
             if (input.isKeyDown(Input.KEY_LEFT) || input.isKeyDown(Input.KEY_A))
@@ -74,6 +74,11 @@ public class PhysicsBoxControlled extends PhysicsBox
             if (input.isKeyDown(Input.KEY_RIGHT) || input.isKeyDown(Input.KEY_D))
             {
                 vector.addAngle(5);
+            }
+            
+            if(input.isKeyDown(Input.KEY_SPACE))
+            {
+                vector.setSpeed(0);
             }
         }
         return vector;

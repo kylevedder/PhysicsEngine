@@ -127,6 +127,7 @@ public class ObjectRegister
                     hitBox.updateAbs(tenHitX + (vectX - vectXSubs * i), tenHitY + (vectY - vectYSubs * i), tenAngle + (vectRotation - vectRotationSubs*i));
 //                    finalVector = Vector.add(Vector.gravityVector(delta), vector);
 //                    finalVector = Vector.flipAxis(finalVector, false, true);
+                    finalVector.setRotation(0);
                     finalVector.setSpeed(0);
                     return new Object[]
                     {
@@ -138,6 +139,7 @@ public class ObjectRegister
             hitBox.updateAbs(tenHitX , tenHitY, tenAngle);
 //            finalVector = Vector.add(Vector.gravityVector(delta), vector);
 //            finalVector = Vector.flipAxis(finalVector, false, true);
+            finalVector.setRotation(0);
             finalVector.setSpeed(0);
             return new Object[]
             {

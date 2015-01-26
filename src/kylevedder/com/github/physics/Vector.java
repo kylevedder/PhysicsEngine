@@ -113,6 +113,17 @@ public class Vector
     }
 
     /**
+     * Sets the rotation of the object.
+     * @param rotation 
+     */
+    public void setRotation(float rotation)
+    {
+        this.rotation = rotation;
+    }
+    
+    
+
+    /**
      * Sets the angle
      *
      * @param angle

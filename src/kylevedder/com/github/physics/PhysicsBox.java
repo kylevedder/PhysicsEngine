@@ -36,7 +36,7 @@ public class PhysicsBox extends PhysicsObject
 
     public void update(int delta)
     {
-        this.vector = Vector.add(Vector.gravityVector(delta), this.vector);
+//        this.vector = Vector.add(Vector.gravityVector(delta), this.vector);
         Object[] objects = Main.register.updateCollision(this.hitBox, this.vector, Main.NUM_COLLISION_UPDATES, delta);
         this.hitBox = (CenteredRectangle)objects[0];
         this.vector = (Vector)objects[1];
